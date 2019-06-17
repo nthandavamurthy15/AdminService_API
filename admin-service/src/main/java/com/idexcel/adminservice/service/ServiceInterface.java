@@ -11,7 +11,7 @@ public interface ServiceInterface {
 	
 	List<Lenders> findAll();
 	
-	Lenders saveLender(AdminServiceDTO theAdminDto);
+	String saveLender(AdminServiceDTO theAdminDto);
 	
 	Lenders getById(String _id);
 	

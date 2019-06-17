@@ -1,5 +1,6 @@
 package com.idexcel.adminservice.controller;
 
+import java.net.URI;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.idexcel.adminservice.dto.AdminServiceDTO;
 import com.idexcel.adminservice.dto.LendersPatchDto;
@@ -36,12 +38,18 @@ public class AdminRestController {
 		
 	}
 	
+	
 	@PostMapping("/Lenders")
-	public Lenders addLender (@RequestBody AdminServiceDTO theServiceDTO) {
+	public ResponseEntity<Object> addLender (@RequestBody AdminServiceDTO theServiceDTO) {
 		
-		Lenders theLender = theAdminServiceImpl.saveLender(theServiceDTO);
+		String id = theAdminServiceImpl.saveLender(theServiceDTO);
 		
-		return theLender;
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
+				"/{_id}").buildAndExpand(id).toUri();
+
+		return ResponseEntity.created(location).build();
+		
+		
 	}
 	
 	@GetMapping("/Lenders/{_id}")
@@ -72,13 +80,14 @@ public class AdminRestController {
 		this.theAdminServiceImpl.updateStatus(patchDto, _id);
 	}
 	
+	/*
 	@GetMapping("/Lenders/{_id}")
 	public ResponseEntity<String> getMetadata(@PathVariable String _id) {
 		
 		return this.theAdminServiceImpl.getMetaData(_id);
 		
 	}
-	
+	*/
 	
 	
 

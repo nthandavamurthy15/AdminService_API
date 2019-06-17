@@ -50,7 +50,7 @@ public class AdminServiceImpl implements ServiceInterface{
 
 
 	@Override
-	public Lenders saveLender(AdminServiceDTO theAdminDto) {
+public String saveLender(AdminServiceDTO theAdminDto) {
 		
 		String name = theAdminDto.getName();
 		
@@ -72,15 +72,12 @@ public class AdminServiceImpl implements ServiceInterface{
 		
 		theAdminServiceDAO.insert(theLenders);
 		
-		return null;
+		return theLenders.get_id();
 		
 		} else {
 			throw new LenderAlreadyExistException ("the lender with the name specified already Exist" + name);
 		}
-		
-		
-		
-		
+
 		
 	}
 	@Override
