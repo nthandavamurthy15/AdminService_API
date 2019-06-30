@@ -20,7 +20,9 @@ import com.idexcel.adminservice.dto.EntityModelMapper;
 import com.idexcel.adminservice.dto.LendersPatchDto;
 import com.idexcel.adminservice.entity.Lenders;
 import com.idexcel.adminservice.exception.LenderAlreadyExistException;
+import com.idexcel.adminservice.exception.LenderNotFoundException;
 import com.idexcel.adminservice.service.ServiceInterface;
+
 
 @Service
 public class AdminServiceImpl implements ServiceInterface{
@@ -31,11 +33,10 @@ public class AdminServiceImpl implements ServiceInterface{
 	
 	EntityModelMapper theModelMapper = new EntityModelMapper();
 	
-	
-	
-	
-	
-
+	/* 
+	 * The following implementations is for the implementation of GET functionality
+	 * Retrieves all the data from the database and returns List to controller layer
+	 */
 	@Override
 	public List<Lenders> findAll() {
 		
@@ -46,11 +47,15 @@ public class AdminServiceImpl implements ServiceInterface{
 				
 		return theLenders;
 	}
-
-
-
+	
+	/* 
+	 * The following implementations is for the implementation of POST functionality
+	 * Accepts a DTO with the exposed information and maps with the Entity
+	 * if the specified Lender is present, exception is thrown
+	 * Added the other administrative details to push to the database 
+	 */
 	@Override
-public String saveLender(AdminServiceDTO theAdminDto) {
+	public String saveLender(AdminServiceDTO theAdminDto) {
 		
 		String name = theAdminDto.getName();
 		
@@ -80,6 +85,9 @@ public String saveLender(AdminServiceDTO theAdminDto) {
 
 		
 	}
+	
+	
+	// returns the object of specified ID
 	@Override
 	public Lenders getById (String _id) {
 	
@@ -87,34 +95,55 @@ public String saveLender(AdminServiceDTO theAdminDto) {
 	}
 
 
-
+	//updates the data specified with the ID (PUT)
 	public void updateById(Lenders theLenders, String _id) {
 		this.theAdminServiceDAO.save(theLenders);
 	}
 
 
-
+	//Deletes the contents of specified ID
 	public void deleteById(String _id) {
 		this.theAdminServiceDAO.deleteById(_id);
 		
 	}
 	
+	/*
+	 * Finds the object by ID, if exists update data, else 
+	 * throw bad request exception
+	 */
 	public void updateStatus(LendersPatchDto lendersPatchDto, String _id) {
 		
-		
+		if (theAdminServiceDAO.existsById(_id)) {
 		Lenders theLenders = this.theAdminServiceDAO.findById(_id).orElse(null);
 		
 		theLenders.setStatus(lendersPatchDto.getStatus());	
 		this.theAdminServiceDAO.save(theLenders);
+		}
+		
+		else
+			throw new LenderNotFoundException ("The Lender with the Id:"+ _id +"does not exist");
 		
 		
 	}
+	
+	
 	public ResponseEntity<String> getMetaData(String _id) {
 		
 		if (theAdminServiceDAO.existsById(_id)) 
 			return new ResponseEntity<>(HttpStatus.OK);
 		else
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+	public boolean checkLender(String _id) {
+		if (theAdminServiceDAO.existsById(_id))
+			return true;
+		
+		else
+			throw new LenderNotFoundException ("The Lender with the Id:"+ _id +"dows not exist" );
+		
+		
+		
 	}
 	
 	
