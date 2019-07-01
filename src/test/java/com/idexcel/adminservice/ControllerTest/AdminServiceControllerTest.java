@@ -63,7 +63,7 @@ public class AdminServiceControllerTest {
 		AdminServiceDTO adminServiceDto = new AdminServiceDTO("City Bank", new Address("12853 Elden Street", "Herndon", "VA", "20171","USA"));
 		when(theAdminServiceImpl.saveLender(adminServiceDto)).thenReturn("5768542");
 		
-		RequestBuilder request = MockMvcRequestBuilders.post("/navaneeth/Lenders").accept(MediaType.APPLICATION_JSON);
+		RequestBuilder request = MockMvcRequestBuilders.post("/api/Lenders").accept(MediaType.APPLICATION_JSON);
 		
 		mockMvc.perform(request)
 				//.andExpect(status().isOk())
