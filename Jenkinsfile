@@ -1,7 +1,7 @@
 node {
  
     try {
-        //notifySlack()
+        notifySlack()
         stage('Checkout Code From GIT') {
             checkout scm
         }
@@ -30,16 +30,16 @@ node {
         }
          
         stage('Deploy in AWS ECS'){
-            sh 'aws ecs update-service --region us-east-1 --cluster Navaneeth-Demo-Cluster --service navaneeth-admin-service --force-new-deployment'
+            sh 'aws ecs update-service --region us-east-1 --cluster Navaneeth-Demo-Cluster --service navaneeth-admin-servce --force-new-deployment'
             sh 'sleep 30'
-            sh 'aws ecs wait services-stable --region us-east-1 --cluster Navaneeth-Demo-Cluster --service navaneeth-admin-service'
+            sh 'aws ecs wait services-stable --region us-east-1 --cluster Navaneeth-Demo-Cluster --service navaneeth-admin-servce'
         }
     } catch (Exception e) {
         currentBuild.result = 'FAILURE'
         throw e
     } finally {
-            //sh 'aws s3 cp target/site/surefire-report.html s3:/navaneeth-admin-service-reports/ --acl public-read'
-        //notifySlack(currentBuild.result)
+           // sh 'aws s3 cp target/site/surefire-report.html s3:/navaneeth-admin-service-reports/ --acl public-read'
+        notifySlack(currentBuild.result)
     }
      
 }
