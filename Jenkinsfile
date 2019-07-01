@@ -16,10 +16,7 @@ node {
         stage("Wait for Sonar Quality Gate Response"){
             timeout(time: 1, unit: 'HOURS') {
               def qualityGate = waitForQualityGate()
-              if (qualityGate.status != 'OK') {
-                error "Pipeline aborted due to quality gate failure: ${qualityGate.status}"
-              }
-            }
+             }
         }
          
         stage('Build Docker Image') {
