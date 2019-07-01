@@ -106,7 +106,7 @@ public class AdminRestController {
  	 * displays the JSON data.d
 	 */
 	
-	@GetMapping("/infofromtodo")
+	@GetMapping("/infofromtodos")
 	public ResponseEntity <String> getnfoFormRest(){
 		
 		RestTemplate restTemplate = new RestTemplate ();
