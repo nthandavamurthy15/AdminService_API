@@ -45,7 +45,7 @@ public class AdminServiceControllerTest {
 		when(theAdminServiceImpl.findAll()).thenReturn(Arrays.asList(new Lenders ("12345678", "Commercia Bank", new Address("459 Herndon Parkway", "Ashburn", "VA","20148", "USA"), "Active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019"), 
 				new Lenders ("65425333", "Columbia Bank", new Address("12888 Sunrise Valley Dr", "Herndon", "VA","20171", "USA"), "active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019")));
 	
-		RequestBuilder request = MockMvcRequestBuilders.get("/navaneeth/Lenders");
+		RequestBuilder request = MockMvcRequestBuilders.get("/api/Lenders");
 		mockMvc.perform(request)
 				.andExpect(status().isOk())
 				.andExpect(content().json("[{\"name\":\"Columbia Bank\",\"address\":{\"street\":\"12888 Sunrise Valley Dr\",\"city\":\"Herndon\",\"state\":\"VA\",\"zipcode\":\"20171\",\"country\":\"USA\"},\"status\":\"active\",\"createdBy\":\"Praveen K\",\"createdDate\":\"Sun Jun 09 03:11:17 EDT 2019\",\"updatedBy\":\"Praveen K\",\"updatedDate\":\"Sun Jun 09 03:11:17 EDT 2019\"},{\"_id\":\"12345678\",\"name\":\"Commercia Bank\",\"address\":{\"street\":\"459 Herndon Parkway\",\"city\":\"Ashburn\",\"state\":\"VA\",\"zipcode\":\"20148\",\"country\":\"USA\"},\"status\":\"Active\",\"createdBy\":\"Praveen K\",\"createdDate\":\"Sun Jun 09 03:11:17 EDT 2019\",\"updatedBy\":\"Praveen K\",\"updatedDate\":\"Sun Jun 09 03:11:17 EDT 2019\"}]"))
@@ -79,7 +79,7 @@ public class AdminServiceControllerTest {
 		String _id = "12345678";
 		when(theAdminServiceImpl.getById(_id)).thenReturn( new Lenders ("12345678", "Commercia Bank", new Address("459 Herndon Parkway", "Ashburn", "VA","20148", "USA"), "Active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019"));
 		
-		RequestBuilder request = MockMvcRequestBuilders.get("/navaneeth/Lenders/12345678");
+		RequestBuilder request = MockMvcRequestBuilders.get("/api/Lenders/12345678");
 		
 		mockMvc.perform(request)
 				.andExpect(status().isOk())
@@ -95,7 +95,7 @@ public class AdminServiceControllerTest {
 		Lenders theLender = new Lenders ("12345678", "Commercia Bank", new Address("459 Herndon Parkway", "Ashburn", "VA","20148", "USA"),"Not Active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019");
 		theAdminServiceImpl.updateById(theLender, _id);
 		
-		RequestBuilder request = MockMvcRequestBuilders.put("/navaneeth/Lenders/12345678").accept(MediaType.APPLICATION_JSON);
+		RequestBuilder request = MockMvcRequestBuilders.put("/api/Lenders/12345678").accept(MediaType.APPLICATION_JSON);
 		
 		mockMvc.perform(request)
 			   .andExpect(status().isBadRequest())
@@ -110,7 +110,7 @@ public class AdminServiceControllerTest {
 		String _id = "5768542";
 		theAdminServiceImpl.deleteById(_id);
 		
-		RequestBuilder request = MockMvcRequestBuilders.delete("/navaneeth/Lenders/5768542");
+		RequestBuilder request = MockMvcRequestBuilders.delete("/api/Lenders/5768542");
 		
 		mockMvc.perform(request)
 		   .andExpect(status().isOk())
@@ -127,7 +127,7 @@ public class AdminServiceControllerTest {
 		theAdminServiceImpl.updateStatus(theLendersPatchDto, _id);
 		
 		
-		RequestBuilder request = MockMvcRequestBuilders.patch("/navaneeth/Lenders/5768542/status");
+		RequestBuilder request = MockMvcRequestBuilders.patch("/api/Lenders/5768542/status");
 				
 		mockMvc.perform(request)
 			   .andExpect(status().isBadRequest())

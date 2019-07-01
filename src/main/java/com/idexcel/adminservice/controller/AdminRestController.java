@@ -26,7 +26,7 @@ import com.idexcel.adminservice.entity.Lenders;
 import com.idexcel.adminservice.serviceimpl.AdminServiceImpl;
 
 @RestController
-@RequestMapping("/navaneeth")
+@RequestMapping("/api")
 public class AdminRestController {
 	
 	
