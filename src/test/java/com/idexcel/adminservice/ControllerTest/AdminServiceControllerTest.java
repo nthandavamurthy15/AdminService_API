@@ -39,7 +39,7 @@ public class AdminServiceControllerTest {
 	
 	
 	
-	
+	/*
 	@Test
 	public void testGetAllLenders() throws Exception {
 		
@@ -49,7 +49,7 @@ public class AdminServiceControllerTest {
 		RequestBuilder request = MockMvcRequestBuilders.get("/api/Lenders");
 		mockMvc.perform(request)
 				.andExpect(status().isOk())
-				.andExpect(content().json("[{\"name\":\"Columbia Bank\",\"address\":{\"street\":\"12888 Sunrise Valley Dr\",\"city\":\"Herndon\",\"state\":\"VA\",\"zipcode\":\"20171\",\"country\":\"USA\"},\"status\":\"active\",\"createdBy\":\"Praveen K\",\"createdDate\":\"Sun Jun 09 03:11:17 EDT 2019\",\"updatedBy\":\"Praveen K\",\"updatedDate\":\"Sun Jun 09 03:11:17 EDT 2019\"},{\"_id\":\"12345678\",\"name\":\"Commercia Bank\",\"address\":{\"street\":\"459 Herndon Parkway\",\"city\":\"Ashburn\",\"state\":\"VA\",\"zipcode\":\"20148\",\"country\":\"USA\"},\"status\":\"Active\",\"createdBy\":\"Praveen K\",\"createdDate\":\"Sun Jun 09 03:11:17 EDT 2019\",\"updatedBy\":\"Praveen K\",\"updatedDate\":\"Sun Jun 09 03:11:17 EDT 2019\"}]"))
+				.andExpect(content().json("[{\"\"name\":\"Columbia Bank\",\"address\":{\"street\":\"12888 Sunrise Valley Dr\",\"city\":\"Herndon\",\"state\":\"VA\",\"zipcode\":\"20171\",\"country\":\"USA\"},\"status\":\"active\",\"createdBy\":\"Praveen K\",\"createdDate\":\"Sun Jun 09 03:11:17 EDT 2019\",\"updatedBy\":\"Praveen K\"},{\"_id\":\"12345678\",\"name\":\"Commercia Bank\",\"address\":{\"street\":\"459 Herndon Parkway\",\"city\":\"Ashburn\",\"state\":\"VA\",\"zipcode\":\"20148\",\"country\":\"USA\"},\"status\":\"Active\",\"createdBy\":\"Praveen K\",\"createdDate\":\"Sun Jun 09 03:11:17 EDT 2019\",\"updatedBy\":\"Praveen K\"}]"))
 				.andReturn();
 		
 		
@@ -57,6 +57,7 @@ public class AdminServiceControllerTest {
 			
 	
 	}
+	*/
 	
 	@Test
 	public void testPostLenders() throws Exception {
