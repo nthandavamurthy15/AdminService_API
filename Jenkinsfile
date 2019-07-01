@@ -20,8 +20,8 @@ node {
         }
          
         stage('Build Docker Image') {
-                sh 'docker build -t nthandavamurthy/admin-service:${BUILD_NUMBER}  -f Dockerfile .'
-                sh 'docker tag nthandavamurthy/admin-service:${BUILD_NUMBER} nthandavamurthy/admin-service:latest'
+                sh 'docker build -t admin-service:${BUILD_NUMBER}  -f Dockerfile .'
+                sh 'docker tag admin-service:${BUILD_NUMBER} nthandavamurthy/admin-service:latest'
         }
              
         stage('Push Docker Image to Docker Hub') {
