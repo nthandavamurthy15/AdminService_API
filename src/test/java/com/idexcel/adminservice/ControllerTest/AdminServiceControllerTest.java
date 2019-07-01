@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.idexcel.adminservice.controller.AdminRestController;
 import com.idexcel.adminservice.dto.AdminServiceDTO;
+import com.idexcel.adminservice.dto.GetAllDTO;
 import com.idexcel.adminservice.dto.LendersPatchDto;
 import com.idexcel.adminservice.entity.Address;
 import com.idexcel.adminservice.entity.Lenders;
@@ -42,8 +43,8 @@ public class AdminServiceControllerTest {
 	@Test
 	public void testGetAllLenders() throws Exception {
 		
-		when(theAdminServiceImpl.findAll()).thenReturn(Arrays.asList(new Lenders ("12345678", "Commercia Bank", new Address("459 Herndon Parkway", "Ashburn", "VA","20148", "USA"), "Active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019"), 
-				new Lenders ("65425333", "Columbia Bank", new Address("12888 Sunrise Valley Dr", "Herndon", "VA","20171", "USA"), "active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019")));
+		when(theAdminServiceImpl.findAll()).thenReturn(Arrays.asList(new GetAllDTO ("12345678", "Commercia Bank", new Address("459 Herndon Parkway", "Ashburn", "VA","20148", "USA"), "Active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K"), 
+				new GetAllDTO ("65425333", "Columbia Bank", new Address("12888 Sunrise Valley Dr", "Herndon", "VA","20171", "USA"), "active", "Praveen K", "Sun Jun 09 03:11:17 EDT 2019", "Praveen K")));
 	
 		RequestBuilder request = MockMvcRequestBuilders.get("/api/Lenders");
 		mockMvc.perform(request)

@@ -3,13 +3,14 @@ package com.idexcel.adminservice.service;
 import java.util.List;
 
 import com.idexcel.adminservice.dto.AdminServiceDTO;
+import com.idexcel.adminservice.dto.GetAllDTO;
 import com.idexcel.adminservice.dto.LendersPatchDto;
 import com.idexcel.adminservice.entity.Lenders;
 
 
 public interface ServiceInterface {
 	
-	List<Lenders> findAll();
+	List<GetAllDTO> findAll();
 	
 	String saveLender(AdminServiceDTO theAdminDto);
 	

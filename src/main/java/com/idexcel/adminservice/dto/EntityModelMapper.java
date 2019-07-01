@@ -32,6 +32,13 @@ public class EntityModelMapper {
 					
 			return theLenders;
 		}
+		
+		public GetAllDTO convertEntitytoGetAll(Lenders theLenders) {
+			
+			GetAllDTO getAllDTO = modelMapper.map(theLenders, GetAllDTO.class);
+			
+			return getAllDTO;
+		}
 
 		
 }

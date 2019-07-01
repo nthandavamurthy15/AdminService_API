@@ -21,6 +21,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.idexcel.adminservice.dto.AdminServiceDTO;
+import com.idexcel.adminservice.dto.GetAllDTO;
 import com.idexcel.adminservice.dto.LendersPatchDto;
 import com.idexcel.adminservice.entity.Lenders;
 import com.idexcel.adminservice.serviceimpl.AdminServiceImpl;
@@ -36,7 +37,7 @@ public class AdminRestController {
 	
 	
 	@GetMapping("/Lenders")
-	public List<Lenders> getAllLenders(){
+	public List<GetAllDTO> getAllLenders(){
 		
 		return this.theAdminServiceImpl.findAll();
 		

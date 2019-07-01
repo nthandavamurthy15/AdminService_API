@@ -2,6 +2,7 @@ package com.idexcel.adminservice.serviceimpl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.idexcel.adminservice.dao.AdminServiceDAO;
 import com.idexcel.adminservice.dto.AdminServiceDTO;
 import com.idexcel.adminservice.dto.EntityModelMapper;
+import com.idexcel.adminservice.dto.GetAllDTO;
 import com.idexcel.adminservice.dto.LendersPatchDto;
 import com.idexcel.adminservice.entity.Lenders;
 import com.idexcel.adminservice.exception.LenderAlreadyExistException;
@@ -37,15 +39,32 @@ public class AdminServiceImpl implements ServiceInterface{
 	 * The following implementations is for the implementation of GET functionality
 	 * Retrieves all the data from the database and returns List to controller layer
 	 */
+	
+	
 	@Override
-	public List<Lenders> findAll() {
+	public List<GetAllDTO> findAll() {
 		
 		List<Lenders> theLenders = this.theAdminServiceDAO.findAll(Sort.by(Direction.DESC, "createdDate"));
 		
-		if (theLenders == null)
+		if (theLenders == null) {
 			return Collections.emptyList();
+		}
+		
+		List<GetAllDTO> mappedLenders = new ArrayList<GetAllDTO>();
+		
+		for(Lenders lenders:theLenders) {
+			GetAllDTO lendersDTO = theModelMapper.convertEntitytoGetAll(lenders);	
+			mappedLenders.add(lendersDTO);	
+			
+		}
+		
+		return mappedLenders;
+			
+		
+		
+		
 				
-		return theLenders;
+		
 	}
 	
 	/* 
