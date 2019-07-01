@@ -37,7 +37,7 @@ public class AdminRestController {
 	
 	
 	@GetMapping("/Lenders")
-	public List<GetAllDTO> getAllLenders(){
+	public List<Lenders> getAllLenders(){
 		
 		return this.theAdminServiceImpl.findAll();
 		

@@ -10,7 +10,7 @@ import com.idexcel.adminservice.entity.Lenders;
 
 public interface ServiceInterface {
 	
-	List<GetAllDTO> findAll();
+	List<Lenders> findAll();
 	
 	String saveLender(AdminServiceDTO theAdminDto);
 	

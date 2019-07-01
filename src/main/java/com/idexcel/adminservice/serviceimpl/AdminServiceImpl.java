@@ -42,7 +42,7 @@ public class AdminServiceImpl implements ServiceInterface{
 	
 	
 	@Override
-	public List<GetAllDTO> findAll() {
+	public List<Lenders> findAll() {
 		
 		List<Lenders> theLenders = this.theAdminServiceDAO.findAll(Sort.by(Direction.DESC, "createdDate"));
 		
@@ -50,6 +50,7 @@ public class AdminServiceImpl implements ServiceInterface{
 			return Collections.emptyList();
 		}
 		
+		/*
 		List<GetAllDTO> mappedLenders = new ArrayList<GetAllDTO>();
 		
 		for(Lenders lenders:theLenders) {
@@ -57,8 +58,8 @@ public class AdminServiceImpl implements ServiceInterface{
 			mappedLenders.add(lendersDTO);	
 			
 		}
-		
-		return mappedLenders;
+		*/
+		return theLenders;
 			
 		
 		
